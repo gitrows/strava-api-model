@@ -1,0 +1,245 @@
+{
+  "id": {
+    "type": "integer",
+    "format": "int64",
+    "description": "The unique identifier of the activity"
+  },
+  "external_id": {
+    "type": "string",
+    "description": "The identifier provided at upload time"
+  },
+  "upload_id": {
+    "type": "integer",
+    "format": "int64",
+    "description": "The identifier of the upload that resulted in this activity"
+  },
+  "athlete": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "integer",
+        "format": "int64",
+        "description": "The unique identifier of the athlete"
+      }
+    }
+  },
+  "name": {
+    "type": "string",
+    "description": "The name of the activity"
+  },
+  "distance": {
+    "type": "number",
+    "format": "float",
+    "description": "The activity's distance, in meters"
+  },
+  "moving_time": {
+    "type": "integer",
+    "description": "The activity's moving time, in seconds"
+  },
+  "elapsed_time": {
+    "type": "integer",
+    "description": "The activity's elapsed time, in seconds"
+  },
+  "total_elevation_gain": {
+    "type": "number",
+    "format": "float",
+    "description": "The activity's total elevation gain."
+  },
+  "elev_high": {
+    "type": "number",
+    "format": "float",
+    "description": "The activity's highest elevation, in meters"
+  },
+  "elev_low": {
+    "type": "number",
+    "format": "float",
+    "description": "The activity's lowest elevation, in meters"
+  },
+  "type": {
+    "type": "string",
+    "enum": [
+      "AlpineSki",
+      "BackcountrySki",
+      "Canoeing",
+      "Crossfit",
+      "EBikeRide",
+      "Elliptical",
+      "Golf",
+      "Handcycle",
+      "Hike",
+      "IceSkate",
+      "InlineSkate",
+      "Kayaking",
+      "Kitesurf",
+      "NordicSki",
+      "Ride",
+      "RockClimbing",
+      "RollerSki",
+      "Rowing",
+      "Run",
+      "Sail",
+      "Skateboard",
+      "Snowboard",
+      "Snowshoe",
+      "Soccer",
+      "StairStepper",
+      "StandUpPaddling",
+      "Surfing",
+      "Swim",
+      "Velomobile",
+      "VirtualRide",
+      "VirtualRun",
+      "Walk",
+      "WeightTraining",
+      "Wheelchair",
+      "Windsurf",
+      "Workout",
+      "Yoga"
+    ],
+    "description": "An enumeration of the types an activity may have."
+  },
+  "start_date": {
+    "type": "string",
+    "format": "date-time",
+    "description": "The time at which the activity was started."
+  },
+  "start_date_local": {
+    "type": "string",
+    "format": "date-time",
+    "description": "The time at which the activity was started in the local timezone."
+  },
+  "timezone": {
+    "type": "string",
+    "description": "The timezone of the activity"
+  },
+  "start_latlng": {
+    "type": "array",
+    "items": {
+      "type": "number",
+      "format": "float"
+    },
+    "minItems": 2,
+    "maxItems": 2,
+    "description": "A pair of latitude/longitude coordinates, represented as an array of 2 floating point numbers."
+  },
+  "end_latlng": {
+    "type": "array",
+    "items": {
+      "type": "number",
+      "format": "float"
+    },
+    "minItems": 2,
+    "maxItems": 2,
+    "description": "A pair of latitude/longitude coordinates, represented as an array of 2 floating point numbers."
+  },
+  "achievement_count": {
+    "type": "integer",
+    "description": "The number of achievements gained during this activity"
+  },
+  "kudos_count": {
+    "type": "integer",
+    "description": "The number of kudos given for this activity"
+  },
+  "comment_count": {
+    "type": "integer",
+    "description": "The number of comments for this activity"
+  },
+  "athlete_count": {
+    "type": "integer",
+    "description": "The number of athletes for taking part in a group activity",
+    "minimum": 1
+  },
+  "photo_count": {
+    "type": "integer",
+    "description": "The number of Instagram photos for this activity"
+  },
+  "total_photo_count": {
+    "type": "integer",
+    "description": "The number of Instagram and Strava photos for this activity"
+  },
+  "map": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The identifier of the map"
+      },
+      "polyline": {
+        "type": "string",
+        "description": "The polyline of the map, only returned on detailed representation of an object"
+      },
+      "summary_polyline": {
+        "type": "string",
+        "description": "The summary polyline of the map"
+      }
+    }
+  },
+  "trainer": {
+    "type": "boolean",
+    "description": "Whether this activity was recorded on a training machine"
+  },
+  "commute": {
+    "type": "boolean",
+    "description": "Whether this activity is a commute"
+  },
+  "manual": {
+    "type": "boolean",
+    "description": "Whether this activity was created manually"
+  },
+  "private": {
+    "type": "boolean",
+    "description": "Whether this activity is private"
+  },
+  "flagged": {
+    "type": "boolean",
+    "description": "Whether this activity is flagged"
+  },
+  "workout_type": {
+    "type": "integer",
+    "description": "The activity's workout type"
+  },
+  "upload_id_str": {
+    "type": "string",
+    "description": "The unique identifier of the upload in string format"
+  },
+  "average_speed": {
+    "type": "number",
+    "format": "float",
+    "description": "The activity's average speed, in meters per second"
+  },
+  "max_speed": {
+    "type": "number",
+    "format": "float",
+    "description": "The activity's max speed, in meters per second"
+  },
+  "has_kudoed": {
+    "type": "boolean",
+    "description": "Whether the logged-in athlete has kudoed this activity"
+  },
+  "gear_id": {
+    "type": "string",
+    "description": "The id of the gear for the activity"
+  },
+  "kilojoules": {
+    "type": "number",
+    "format": "float",
+    "description": "The total work done in kilojoules during this activity. Rides only"
+  },
+  "average_watts": {
+    "type": "number",
+    "format": "float",
+    "description": "Average power output in watts during this activity. Rides only"
+  },
+  "device_watts": {
+    "type": "boolean",
+    "description": "Whether the watts are from a power meter, false if estimated"
+  },
+  "max_watts": {
+    "type": "integer",
+    "description": "Rides with power meter data only"
+  },
+  "weighted_average_watts": {
+    "type": "integer",
+    "description": "Similar to Normalized Power. Rides with power meter data only"
+  }
+}

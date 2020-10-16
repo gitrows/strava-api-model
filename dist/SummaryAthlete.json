@@ -1,0 +1,65 @@
+{
+  "id": {
+    "type": "integer",
+    "format": "int64",
+    "description": "The unique identifier of the athlete"
+  },
+  "resource_state": {
+    "type": "integer",
+    "description": "Resource state, indicates level of detail. Possible values: 1 -> \"meta\", 2 -> \"summary\", 3 -> \"detail\""
+  },
+  "firstname": {
+    "type": "string",
+    "description": "The athlete's first name."
+  },
+  "lastname": {
+    "type": "string",
+    "description": "The athlete's last name."
+  },
+  "profile_medium": {
+    "type": "string",
+    "description": "URL to a 62x62 pixel profile picture."
+  },
+  "profile": {
+    "type": "string",
+    "description": "URL to a 124x124 pixel profile picture."
+  },
+  "city": {
+    "type": "string",
+    "description": "The athlete's city."
+  },
+  "state": {
+    "type": "string",
+    "description": "The athlete's state or geographical region."
+  },
+  "country": {
+    "type": "string",
+    "description": "The athlete's country."
+  },
+  "sex": {
+    "type": "string",
+    "description": "The athlete's sex.",
+    "enum": [
+      "M",
+      "F"
+    ]
+  },
+  "premium": {
+    "type": "boolean",
+    "description": "Deprecated.  Use summit field instead. Whether the athlete has any Summit subscription."
+  },
+  "summit": {
+    "type": "boolean",
+    "description": "Whether the athlete has any Summit subscription."
+  },
+  "created_at": {
+    "type": "string",
+    "format": "date-time",
+    "description": "The time at which the athlete was created."
+  },
+  "updated_at": {
+    "type": "string",
+    "format": "date-time",
+    "description": "The time at which the athlete was last updated."
+  }
+}

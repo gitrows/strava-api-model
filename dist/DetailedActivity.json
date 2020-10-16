@@ -1,0 +1,798 @@
+{
+  "description": {
+    "type": "string",
+    "description": "The description of the activity"
+  },
+  "photos": {
+    "type": "object",
+    "properties": {
+      "count": {
+        "type": "integer",
+        "description": "The number of photos"
+      },
+      "primary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "source": {
+            "type": "integer"
+          },
+          "unique_id": {
+            "type": "string"
+          },
+          "urls": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "gear": {
+    "type": "object",
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "The gear's unique identifier."
+      },
+      "resource_state": {
+        "type": "integer",
+        "description": "Resource state, indicates level of detail. Possible values: 2 -> \"summary\", 3 -> \"detail\""
+      },
+      "primary": {
+        "type": "boolean",
+        "description": "Whether this gear's is the owner's default one."
+      },
+      "name": {
+        "type": "string",
+        "description": "The gear's name."
+      },
+      "distance": {
+        "type": "number",
+        "format": "float",
+        "description": "The distance logged with this gear."
+      }
+    }
+  },
+  "calories": {
+    "type": "number",
+    "format": "float",
+    "description": "The number of kilocalories consumed during this activity"
+  },
+  "segment_efforts": {
+    "type": "array",
+    "items": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The unique identifier of this effort"
+            },
+            "activity_id": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The unique identifier of the activity related to this effort"
+            },
+            "elapsed_time": {
+              "type": "integer",
+              "description": "The effort's elapsed time"
+            },
+            "start_date": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The time at which the effort was started."
+            },
+            "start_date_local": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The time at which the effort was started in the local timezone."
+            },
+            "distance": {
+              "type": "number",
+              "format": "float",
+              "description": "The effort's distance in meters"
+            },
+            "is_kom": {
+              "type": "boolean",
+              "description": "Whether this effort is the current best on the leaderboard"
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the segment on which this effort was performed"
+            },
+            "activity": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "The unique identifier of the activity"
+                }
+              }
+            },
+            "athlete": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "The unique identifier of the athlete"
+                }
+              }
+            },
+            "moving_time": {
+              "type": "integer",
+              "description": "The effort's moving time"
+            },
+            "start_index": {
+              "type": "integer",
+              "description": "The start index of this effort in its activity's stream"
+            },
+            "end_index": {
+              "type": "integer",
+              "description": "The end index of this effort in its activity's stream"
+            },
+            "average_cadence": {
+              "type": "number",
+              "format": "float",
+              "description": "The effort's average cadence"
+            },
+            "average_watts": {
+              "type": "number",
+              "format": "float",
+              "description": "The average wattage of this effort"
+            },
+            "device_watts": {
+              "type": "boolean",
+              "description": "For riding efforts, whether the wattage was reported by a dedicated recording device"
+            },
+            "average_heartrate": {
+              "type": "number",
+              "format": "float",
+              "description": "The heart heart rate of the athlete during this effort"
+            },
+            "max_heartrate": {
+              "type": "number",
+              "format": "float",
+              "description": "The maximum heart rate of the athlete during this effort"
+            },
+            "segment": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "The unique identifier of this segment"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of this segment"
+                },
+                "activity_type": {
+                  "type": "string",
+                  "enum": [
+                    "Ride",
+                    "Run"
+                  ]
+                },
+                "distance": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "The segment's distance, in meters"
+                },
+                "average_grade": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "The segment's average grade, in percents"
+                },
+                "maximum_grade": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "The segments's maximum grade, in percents"
+                },
+                "elevation_high": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "The segments's highest elevation, in meters"
+                },
+                "elevation_low": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "The segments's lowest elevation, in meters"
+                },
+                "start_latlng": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "description": "A pair of latitude/longitude coordinates, represented as an array of 2 floating point numbers."
+                },
+                "end_latlng": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "description": "A pair of latitude/longitude coordinates, represented as an array of 2 floating point numbers."
+                },
+                "climb_category": {
+                  "type": "integer",
+                  "description": "The category of the climb [0, 5]. Higher is harder ie. 5 is Hors catégorie, 0 is uncategorized in climb_category."
+                },
+                "city": {
+                  "type": "string",
+                  "description": "The segments's city."
+                },
+                "state": {
+                  "type": "string",
+                  "description": "The segments's state or geographical region."
+                },
+                "country": {
+                  "type": "string",
+                  "description": "The segment's country."
+                },
+                "private": {
+                  "type": "boolean",
+                  "description": "Whether this segment is private."
+                },
+                "athlete_pr_effort": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The unique identifier of this effort"
+                    },
+                    "activity_id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The unique identifier of the activity related to this effort"
+                    },
+                    "elapsed_time": {
+                      "type": "integer",
+                      "description": "The effort's elapsed time"
+                    },
+                    "start_date": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The time at which the effort was started."
+                    },
+                    "start_date_local": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The time at which the effort was started in the local timezone."
+                    },
+                    "distance": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "The effort's distance in meters"
+                    },
+                    "is_kom": {
+                      "type": "boolean",
+                      "description": "Whether this effort is the current best on the leaderboard"
+                    }
+                  }
+                },
+                "athlete_segment_stats": {
+                  "type": "object",
+                  "properties": {
+                    "pr_activity_id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The unique identifier of the activity related to the PR effort."
+                    },
+                    "pr_elapsed_time": {
+                      "type": "integer",
+                      "description": "The elapsed time ot the PR effort."
+                    },
+                    "pr_date": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The time at which the PR effort was started."
+                    },
+                    "effort_count": {
+                      "type": "integer",
+                      "description": "Number of efforts by the authenticated athlete on this segment."
+                    }
+                  }
+                }
+              }
+            },
+            "kom_rank": {
+              "type": "integer",
+              "description": "The rank of the effort on the global leaderboard if it belongs in the top 10 at the time of upload",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "pr_rank": {
+              "type": "integer",
+              "description": "The rank of the effort on the athlete's leaderboard if it belongs in the top 3 at the time of upload",
+              "minimum": 1,
+              "maximum": 3
+            },
+            "hidden": {
+              "type": "boolean",
+              "description": "Whether this effort should be hidden when viewed within an activity"
+            }
+          }
+        }
+      ]
+    }
+  },
+  "device_name": {
+    "type": "string",
+    "description": "The name of the device used to record the activity"
+  },
+  "embed_token": {
+    "type": "string",
+    "description": "The token used to embed a Strava activity"
+  },
+  "splits_metric": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "average_speed": {
+          "type": "number",
+          "format": "float",
+          "description": "The average speed of this split, in meters per second"
+        },
+        "distance": {
+          "type": "number",
+          "format": "float",
+          "description": "The distance of this split, in meters"
+        },
+        "elapsed_time": {
+          "type": "integer",
+          "description": "The elapsed time of this split, in seconds"
+        },
+        "elevation_difference": {
+          "type": "number",
+          "format": "float",
+          "description": "The elevation difference of this split, in meters"
+        },
+        "pace_zone": {
+          "type": "integer",
+          "description": "The pacing zone of this split"
+        },
+        "moving_time": {
+          "type": "integer",
+          "description": "The moving time of this split, in seconds"
+        },
+        "split": {
+          "type": "integer",
+          "description": "N/A"
+        }
+      }
+    },
+    "description": "The splits of this activity in metric units (for runs)"
+  },
+  "splits_standard": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "average_speed": {
+          "type": "number",
+          "format": "float",
+          "description": "The average speed of this split, in meters per second"
+        },
+        "distance": {
+          "type": "number",
+          "format": "float",
+          "description": "The distance of this split, in meters"
+        },
+        "elapsed_time": {
+          "type": "integer",
+          "description": "The elapsed time of this split, in seconds"
+        },
+        "elevation_difference": {
+          "type": "number",
+          "format": "float",
+          "description": "The elevation difference of this split, in meters"
+        },
+        "pace_zone": {
+          "type": "integer",
+          "description": "The pacing zone of this split"
+        },
+        "moving_time": {
+          "type": "integer",
+          "description": "The moving time of this split, in seconds"
+        },
+        "split": {
+          "type": "integer",
+          "description": "N/A"
+        }
+      }
+    },
+    "description": "The splits of this activity in imperial units (for runs)"
+  },
+  "laps": {
+    "type": "array",
+    "items": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64",
+          "description": "The unique identifier of this lap"
+        },
+        "activity": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The unique identifier of the activity"
+            }
+          }
+        },
+        "athlete": {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The unique identifier of the athlete"
+            }
+          }
+        },
+        "average_cadence": {
+          "type": "number",
+          "format": "float",
+          "description": "The lap's average cadence"
+        },
+        "average_speed": {
+          "type": "number",
+          "format": "float",
+          "description": "The lap's average speed"
+        },
+        "distance": {
+          "type": "number",
+          "format": "float",
+          "description": "The lap's distance, in meters"
+        },
+        "elapsed_time": {
+          "type": "integer",
+          "description": "The lap's elapsed time, in seconds"
+        },
+        "start_index": {
+          "type": "integer",
+          "description": "The start index of this effort in its activity's stream"
+        },
+        "end_index": {
+          "type": "integer",
+          "description": "The end index of this effort in its activity's stream"
+        },
+        "lap_index": {
+          "type": "integer",
+          "description": "The index of this lap in the activity it belongs to"
+        },
+        "max_speed": {
+          "type": "number",
+          "format": "float",
+          "description": "The maximum speed of this lat, in meters per second"
+        },
+        "moving_time": {
+          "type": "integer",
+          "description": "The lap's moving time, in seconds"
+        },
+        "name": {
+          "type": "string",
+          "description": "The name of the lap"
+        },
+        "pace_zone": {
+          "type": "integer",
+          "description": "The athlete's pace zone during this lap"
+        },
+        "split": {
+          "type": "integer"
+        },
+        "start_date": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time at which the lap was started."
+        },
+        "start_date_local": {
+          "type": "string",
+          "format": "date-time",
+          "description": "The time at which the lap was started in the local timezone."
+        },
+        "total_elevation_gain": {
+          "type": "number",
+          "format": "float",
+          "description": "The elevation gain of this lap, in meters"
+        }
+      }
+    }
+  },
+  "best_efforts": {
+    "type": "array",
+    "items": {
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The unique identifier of this effort"
+            },
+            "activity_id": {
+              "type": "integer",
+              "format": "int64",
+              "description": "The unique identifier of the activity related to this effort"
+            },
+            "elapsed_time": {
+              "type": "integer",
+              "description": "The effort's elapsed time"
+            },
+            "start_date": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The time at which the effort was started."
+            },
+            "start_date_local": {
+              "type": "string",
+              "format": "date-time",
+              "description": "The time at which the effort was started in the local timezone."
+            },
+            "distance": {
+              "type": "number",
+              "format": "float",
+              "description": "The effort's distance in meters"
+            },
+            "is_kom": {
+              "type": "boolean",
+              "description": "Whether this effort is the current best on the leaderboard"
+            }
+          }
+        },
+        {
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The name of the segment on which this effort was performed"
+            },
+            "activity": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "The unique identifier of the activity"
+                }
+              }
+            },
+            "athlete": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "The unique identifier of the athlete"
+                }
+              }
+            },
+            "moving_time": {
+              "type": "integer",
+              "description": "The effort's moving time"
+            },
+            "start_index": {
+              "type": "integer",
+              "description": "The start index of this effort in its activity's stream"
+            },
+            "end_index": {
+              "type": "integer",
+              "description": "The end index of this effort in its activity's stream"
+            },
+            "average_cadence": {
+              "type": "number",
+              "format": "float",
+              "description": "The effort's average cadence"
+            },
+            "average_watts": {
+              "type": "number",
+              "format": "float",
+              "description": "The average wattage of this effort"
+            },
+            "device_watts": {
+              "type": "boolean",
+              "description": "For riding efforts, whether the wattage was reported by a dedicated recording device"
+            },
+            "average_heartrate": {
+              "type": "number",
+              "format": "float",
+              "description": "The heart heart rate of the athlete during this effort"
+            },
+            "max_heartrate": {
+              "type": "number",
+              "format": "float",
+              "description": "The maximum heart rate of the athlete during this effort"
+            },
+            "segment": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "integer",
+                  "format": "int64",
+                  "description": "The unique identifier of this segment"
+                },
+                "name": {
+                  "type": "string",
+                  "description": "The name of this segment"
+                },
+                "activity_type": {
+                  "type": "string",
+                  "enum": [
+                    "Ride",
+                    "Run"
+                  ]
+                },
+                "distance": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "The segment's distance, in meters"
+                },
+                "average_grade": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "The segment's average grade, in percents"
+                },
+                "maximum_grade": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "The segments's maximum grade, in percents"
+                },
+                "elevation_high": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "The segments's highest elevation, in meters"
+                },
+                "elevation_low": {
+                  "type": "number",
+                  "format": "float",
+                  "description": "The segments's lowest elevation, in meters"
+                },
+                "start_latlng": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "description": "A pair of latitude/longitude coordinates, represented as an array of 2 floating point numbers."
+                },
+                "end_latlng": {
+                  "type": "array",
+                  "items": {
+                    "type": "number",
+                    "format": "float"
+                  },
+                  "minItems": 2,
+                  "maxItems": 2,
+                  "description": "A pair of latitude/longitude coordinates, represented as an array of 2 floating point numbers."
+                },
+                "climb_category": {
+                  "type": "integer",
+                  "description": "The category of the climb [0, 5]. Higher is harder ie. 5 is Hors catégorie, 0 is uncategorized in climb_category."
+                },
+                "city": {
+                  "type": "string",
+                  "description": "The segments's city."
+                },
+                "state": {
+                  "type": "string",
+                  "description": "The segments's state or geographical region."
+                },
+                "country": {
+                  "type": "string",
+                  "description": "The segment's country."
+                },
+                "private": {
+                  "type": "boolean",
+                  "description": "Whether this segment is private."
+                },
+                "athlete_pr_effort": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The unique identifier of this effort"
+                    },
+                    "activity_id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The unique identifier of the activity related to this effort"
+                    },
+                    "elapsed_time": {
+                      "type": "integer",
+                      "description": "The effort's elapsed time"
+                    },
+                    "start_date": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The time at which the effort was started."
+                    },
+                    "start_date_local": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The time at which the effort was started in the local timezone."
+                    },
+                    "distance": {
+                      "type": "number",
+                      "format": "float",
+                      "description": "The effort's distance in meters"
+                    },
+                    "is_kom": {
+                      "type": "boolean",
+                      "description": "Whether this effort is the current best on the leaderboard"
+                    }
+                  }
+                },
+                "athlete_segment_stats": {
+                  "type": "object",
+                  "properties": {
+                    "pr_activity_id": {
+                      "type": "integer",
+                      "format": "int64",
+                      "description": "The unique identifier of the activity related to the PR effort."
+                    },
+                    "pr_elapsed_time": {
+                      "type": "integer",
+                      "description": "The elapsed time ot the PR effort."
+                    },
+                    "pr_date": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "The time at which the PR effort was started."
+                    },
+                    "effort_count": {
+                      "type": "integer",
+                      "description": "Number of efforts by the authenticated athlete on this segment."
+                    }
+                  }
+                }
+              }
+            },
+            "kom_rank": {
+              "type": "integer",
+              "description": "The rank of the effort on the global leaderboard if it belongs in the top 10 at the time of upload",
+              "minimum": 1,
+              "maximum": 10
+            },
+            "pr_rank": {
+              "type": "integer",
+              "description": "The rank of the effort on the athlete's leaderboard if it belongs in the top 3 at the time of upload",
+              "minimum": 1,
+              "maximum": 3
+            },
+            "hidden": {
+              "type": "boolean",
+              "description": "Whether this effort should be hidden when viewed within an activity"
+            }
+          }
+        }
+      ]
+    }
+  }
+}
